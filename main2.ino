@@ -3,7 +3,7 @@
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-/* Variaveis globais para leitura do termistor*/
+// Variaveis globais para leitura do termistor//
 const int pinTermistor = A0;
 const float beta = 3950;
 const float resistenciaNominal = 100000;
@@ -11,6 +11,7 @@ const float temperaturaNominal = 25 + 273;
 const float rx = resistenciaNominal * exp(-beta/temperaturaNominal);
 const float vcc = 5;
 const resistenciaReferencia = 100000;
+//--------------------------------------------//
 
 float calcTemperatura(){
     //Código adaptado de "https://www.makerhero.com/blog/termistor-ntc-arduino/"//
@@ -27,7 +28,7 @@ void mostrarLCD(float temperatura, int velocidadeMotor){
     lcd.print("Temp At: ");
     lcd.print(temperatura);
     lcd.print(" C");
-    lcd.print "   "
+    lcd.print("   ")
 
 }
 
