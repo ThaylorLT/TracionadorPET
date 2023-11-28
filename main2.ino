@@ -25,19 +25,34 @@ float calcTemperatura(){
 
 void mostrarLCD(float temperatura, int velocidadeMotor){
     lcd.home();
-    lcd.print("Temp At: ");
+    lcd.print("TM:");
     lcd.print(temperatura);
-    lcd.print(" C");
-    lcd.print("   ")
-
+    lcd.print("/200C");
+    lcd.print(" ");
+    lcd.print("T:");
+    lcd.setCursor(0, 1);
+    lcd.print("Vel Motor:");
+    lcd.print(velocidadeMotor);
+    lcd.print("%");
 }
 
-void limiteTemperatura(float temperatura){
+void limiteTemperatura(float temperatura, float maxTemperatura){
+    float minTemperatura= maxTemperatura - 1;
     if(temperatura > maxTemperatura){
         digitalWrite(12,LOW);
     } else if (temperatura < minTemperatura){
         digitalWrite(12,HIGH);
     } 
+}
+
+int lerVelocidade(){
+    int velMotor=map(analogRead(A1),0,1023,0,100);
+    return pot1
+}
+
+int lerTemperatura(){
+    int temp=map(analogRead(A2),0,1023,200,250);
+    return temp;
 }
 
 void setup(){
@@ -47,5 +62,6 @@ void setup(){
 }
 
 void loop(){
+
 
 }
