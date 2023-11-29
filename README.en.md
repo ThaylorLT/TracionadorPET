@@ -8,10 +8,10 @@
 
 
 # List of Components 💻:
-- **1x Termistor NTC 3950 100K**
+- **1x NTC Thermistor 3950 100K**
 - **1x Resistor 100k 1/8W**
-- **2x Potenciometros 10k**
-- **1x Resistencia de Cartucho 12v/40W**
+- **2x Potentiometer 10k**
+- **1x Cartridge Resistance 12v/40W**
 - **1x Arduino Uno**
 
 # Eletrical Schematic ⚡:
