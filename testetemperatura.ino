@@ -17,7 +17,7 @@ const double vcc = 5.0;
 const double R = 100000.0;
 
 // Numero de amostras na leitura
-const int nAmostras = 5;
+const int nAmostras = 128;
 
 // Iniciação
 void setup() {
@@ -28,10 +28,9 @@ void setup() {
 // Laço perpétuo
 void loop() {
   // Le o sensor algumas vezes
-  int soma = 0;
+  unsigned long long int soma = 0;
   for (int i = 0; i < nAmostras; i++) {
     soma += analogRead(pinTermistor);
-    delay (10);
   }
 
   // Determina a resistência do termistor
