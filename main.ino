@@ -10,13 +10,17 @@ const float resistenciaNominal = 100000;
 const float temperaturaNominal = 25 + 273;
 const float rx = resistenciaNominal * exp(-beta/temperaturaNominal);
 const float vcc = 5;
-const resistenciaReferencia = 100000;
+const float resistenciaReferencia = 100000;
 //--------------------------------------------//
+const int nSamples=128;
 
 float calcTemperatura(){
     //Código adaptado de "https://www.makerhero.com/blog/termistor-ntc-arduino/"//
-    leitura = analogRead(pinTermistor);
-    float v = (vcc*leitura)/1024;
+    unsigned long long soma = 0;
+    for (int i = 0; i < nSamples; i++) {
+        soma += analogRead(pinTermistor);
+    }
+    float v = (vcc*leitura)/(nSamples*1024);
     float r = (vcc*resistenciaReferencia)/v - resistenciaReferencia
     float temperatura = beta / log(r/rx);
     //Fim do código adaptado//
