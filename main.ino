@@ -13,6 +13,7 @@ const float vcc = 5;
 const float resistenciaReferencia = 100000;
 //--------------------------------------------//
 const int nSamples=128;
+bool estado=true;
 
 float calcTemperatura(){
   //Código adaptado de "https://www.makerhero.com/blog/termistor-ntc-arduino/"//  
@@ -69,8 +70,5 @@ void setup(){
 }
 
 void loop(){
-  float temperatura= calcTemperatura();
-  mostrarLCD(temperatura,0);
-  delay(1000);
 
 }
