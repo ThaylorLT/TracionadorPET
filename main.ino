@@ -15,25 +15,23 @@ const float resistenciaReferencia = 100000;
 const int nSamples=128;
 
 float calcTemperatura(){
-    //Código adaptado de "https://www.makerhero.com/blog/termistor-ntc-arduino/"//
-    unsigned long long soma = 0;
-    for (int i = 0; i < nSamples; i++) {
-        soma += analogRead(pinTermistor);
-    }
-    float v = (vcc*leitura)/(nSamples*1024);
-    float r = (vcc*resistenciaReferencia)/v - resistenciaReferencia
-    float temperatura = beta / log(r/rx);
-    //Fim do código adaptado//
-    return temperatura - 273;
+  //Código adaptado de "https://www.makerhero.com/blog/termistor-ntc-arduino/"//  
+  unsigned long long int soma = 0;
+  for (int i = 0; i < nSamples; i++) {
+    soma += analogRead(pinTermistor);
+  }
+  double v = (vcc*soma)/(nSamples*1024.0);
+  double r = (vcc*resistenciaReferencia)/v - resistenciaReferencia;
+  double temperatura = beta / log(r/rx);
+  //Fim do código adaptado//
+  return (temperatura - 273.0);
 }
 
 void mostrarLCD(float temperatura, int velocidadeMotor){
     lcd.home();
-    lcd.print("TM:");
-    lcd.print(temperatura);
-    lcd.print("/200C");
-    lcd.print(" ");
-    lcd.print("T:");
+    lcd.print("TMP:");
+    lcd.print((int)temperatura);
+    lcd.print("/250C");
     lcd.setCursor(0, 1);
     lcd.print("Vel Motor:");
     lcd.print(velocidadeMotor);
@@ -49,23 +47,30 @@ void limiteTemperatura(float temperatura, float maxTemperatura){
     } 
 }
 
-int lerVelocidade(){
+int lerVelocidade(bool estado){
+  if(estado){
     int velMotor=map(analogRead(A1),0,1023,0,100);
-    return pot1
+    return velMotor;
+  } else {
+    int temp=map(analogRead(A2),0,1023,200,250);
+    return temp;
+  }
 }
 
 int lerTemperatura(){
-    int temp=map(analogRead(A2),0,1023,200,250);
-    return temp;
+    
 }
 
 void setup(){
     lcd.init();
-    lcd.backlight(1);
+    lcd.backlight();
     pinMode(12,OUTPUT);
+    Serial.begin(9600);
 }
 
 void loop(){
-
+  float temperatura= calcTemperatura();
+  mostrarLCD(temperatura,0);
+  delay(1000);
 
 }
