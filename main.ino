@@ -13,7 +13,7 @@ const float vcc = 5;
 const float resistenciaReferencia = 100000;
 //--------------------------------------------//
 const int nSamples=128;
-bool estado=true;
+const int pinRele=11;
 
 float calcTemperatura(){
   //Código adaptado de "https://www.makerhero.com/blog/termistor-ntc-arduino/"//  
@@ -28,11 +28,13 @@ float calcTemperatura(){
   return (temperatura - 273.0);
 }
 
-void mostrarLCD(float temperatura, int velocidadeMotor){
+void mostrarLCD(float temperatura, int velocidadeMotor, float maxTemperatura){
     lcd.home();
     lcd.print("TMP:");
     lcd.print((int)temperatura);
-    lcd.print("/250C");
+    lcd.print("/");
+    lcd.print(maxTemperatura);
+    lcd.print("C");
     lcd.setCursor(0, 1);
     lcd.print("Vel Motor:");
     lcd.print(velocidadeMotor);
@@ -42,33 +44,43 @@ void mostrarLCD(float temperatura, int velocidadeMotor){
 void limiteTemperatura(float temperatura, float maxTemperatura){
     float minTemperatura= maxTemperatura - 1;
     if(temperatura > maxTemperatura){
-        digitalWrite(12,LOW);
+        digitalWrite(pinRele,LOW);
     } else if (temperatura < minTemperatura){
-        digitalWrite(12,HIGH);
+        digitalWrite(pinRele,HIGH);
     } 
 }
 
 int lerVelocidade(bool estado){
-  if(estado){
-    int velMotor=map(analogRead(A1),0,1023,0,100);
-    return velMotor;
-  } else {
-    int temp=map(analogRead(A2),0,1023,200,250);
-    return temp;
-  }
+  int velMotor=map(analogRead(A1),0,1023,0,100);
+  return velMotor;
 }
 
 int lerTemperatura(){
-    
+    float maxTemperatura=map(analogRead(A2),0,1023,0,250);
+    return maxTemperatura;
 }
 
 void setup(){
     lcd.init();
     lcd.backlight();
-    pinMode(12,OUTPUT);
+    pinMode(pinRele,OUTPUT);
+    pinMode(botaoLiga, INPUT_PULLUP);
     Serial.begin(9600);
 }
 
 void loop(){
-
+  bool estado = digitalRead(botaoLiga);
+  while (!estado){
+      float temperatura = calcTemperatura();
+      int velocidadeMotor = lerVelocidade(estado);
+      float maxTemperatura = lerTemperatura();
+      mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
+      delay(200);
+    }
+    float temperatura = calcTemperatura();
+    int velocidadeMotor = lerVelocidade(estado);
+    float maxTemperatura = lerTemperatura();
+    limiteTemperatura(temperatura, maxTemperatura);
+    mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
+    delay(200);
 }
