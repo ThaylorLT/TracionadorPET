@@ -33,11 +33,11 @@ void mostrarLCD(float temperatura, int velocidadeMotor, float maxTemperatura){
     lcd.print("TMP:");
     lcd.print((int)temperatura);
     lcd.print("/");
-    lcd.print(maxTemperatura);
+    lcd.print((int)maxTemperatura);
     lcd.print("C");
     lcd.setCursor(0, 1);
     lcd.print("Vel Motor:");
-    lcd.print(velocidadeMotor);
+    lcd.print((int)velocidadeMotor);
     lcd.print("%");
 }
 
@@ -50,9 +50,15 @@ void limiteTemperatura(float temperatura, float maxTemperatura){
     } 
 }
 
-int lerVelocidade(bool estado){
-  int velMotor=map(analogRead(A1),0,1023,0,100);
-  return velMotor;
+float lerPotenciometro(bool estado){
+  if(estado){
+    float velMotor=map(analogRead(A1),0,1023,0,100);
+    return velMotor;
+  } else {
+    float maxTemperatura=map(analogRead(A2),0,1023,0,250);
+    return maxTemperatura;
+  }
+  
 }
 
 int lerTemperatura(){
@@ -60,27 +66,42 @@ int lerTemperatura(){
     return maxTemperatura;
 }
 
+void acionaMotor(float velocidadeMotor){
+
+}
+
+void desligaMotor(){
+
+}
+
 void setup(){
     lcd.init();
     lcd.backlight();
     pinMode(pinRele,OUTPUT);
     pinMode(botaoLiga, INPUT_PULLUP);
-    Serial.begin(9600);
+
 }
 
 void loop(){
   bool estado = digitalRead(botaoLiga);
-  while (!estado){
+  if (!estado){
       float temperatura = calcTemperatura();
-      int velocidadeMotor = lerVelocidade(estado);
+      float velocidadeMotor = lerPotenciometro(estado);
+      if(motorLigado){
+        desligaMotor();
+      }
+      mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
+      delay(200);
+    } else {
+      float temperatura = calcTemperatura();
+      int velocidadeMotor = lerPotenciometro(estado);
       float maxTemperatura = lerTemperatura();
+      if(!motorLigado){
+        acionaMotor(velocidadeMotor);
+      }
+      limiteTemperatura(temperatura, maxTemperatura);
       mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
       delay(200);
     }
-    float temperatura = calcTemperatura();
-    int velocidadeMotor = lerVelocidade(estado);
-    float maxTemperatura = lerTemperatura();
-    limiteTemperatura(temperatura, maxTemperatura);
-    mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
-    delay(200);
+    
 }
