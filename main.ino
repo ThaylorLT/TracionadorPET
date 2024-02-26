@@ -1,8 +1,9 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
+#include <Servo.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-
+Servo motor;
 // Variaveis globais para leitura do termistor//
 const int pinTermistor = A0;
 const float beta = 3950;
@@ -13,7 +14,12 @@ const float vcc = 5;
 const float resistenciaReferencia = 100000;
 //--------------------------------------------//
 const int nSamples=128;
-const int pinRele=11;
+const int pinRele=9;
+const int pinLigar=7;
+const int pinConfig=6;
+const int pinMotor=5;
+int velocidadeMotor=0;
+float maxTemperatura=0;
 
 float calcTemperatura(){
   //Código adaptado de "https://www.makerhero.com/blog/termistor-ntc-arduino/"//  
@@ -50,58 +56,53 @@ void limiteTemperatura(float temperatura, float maxTemperatura){
     } 
 }
 
-float lerPotenciometro(bool estado){
-  if(estado){
-    float velMotor=map(analogRead(A1),0,1023,0,100);
+float lerMotor(){
+    float velMotor=analogRead(A1);
     return velMotor;
-  } else {
-    float maxTemperatura=map(analogRead(A2),0,1023,0,250);
-    return maxTemperatura;
-  }
-  
 }
 
 int lerTemperatura(){
-    float maxTemperatura=map(analogRead(A2),0,1023,0,250);
+    float maxTemperatura=map(analogRead(A1),0,1023,0,210);
     return maxTemperatura;
 }
 
 void acionaMotor(float velocidadeMotor){
-
+  motor.write(110);
 }
 
 void desligaMotor(){
+  motor.write(90);
 
 }
 
 void setup(){
     lcd.init();
     lcd.backlight();
+    motor.attach(pinMotor);
     pinMode(pinRele,OUTPUT);
-    pinMode(botaoLiga, INPUT_PULLUP);
+    pinMode(pinLigar, INPUT);
+    pinMode(pinConfig, INPUT);
 
 }
 
 void loop(){
-  bool estado = digitalRead(botaoLiga);
-  if (!estado){
-      float temperatura = calcTemperatura();
-      float velocidadeMotor = lerPotenciometro(estado);
-      if(motorLigado){
-        desligaMotor();
+    bool estadoConfig=digitalRead(pinConfig);
+    bool estadoLigar=digitalRead(pinLigar);
+    float temperatura=calcTemperatura();
+    desligaMotor();
+    if(!estadoLigar){
+      digitalWrite(pinRele,LOW);
+      if(estadoConfig){
+        velocidadeMotor=lerMotor();
+      } else {
+        maxTemperatura=lerTemperatura();
       }
       mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
-      delay(200);
     } else {
-      float temperatura = calcTemperatura();
-      int velocidadeMotor = lerPotenciometro(estado);
-      float maxTemperatura = lerTemperatura();
-      if(!motorLigado){
-        acionaMotor(velocidadeMotor);
-      }
-      limiteTemperatura(temperatura, maxTemperatura);
-      mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
-      delay(200);
+      //ligar motor
+      acionaMotor(1);
+      //controlar rele
+
     }
-    
+   lcd.home();
 }
