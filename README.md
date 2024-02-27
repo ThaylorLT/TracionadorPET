@@ -12,6 +12,7 @@
 - **2x Potenciometros 10k**
 - **1x Resistencia de Cartucho 12v/40W**
 - **1x Arduino Uno**
+- **Servo Motor MG996R**
 
 # Esquema Elétrico ⚡:
 
