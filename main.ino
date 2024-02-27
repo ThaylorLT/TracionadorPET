@@ -103,5 +103,4 @@ void loop(){
       acionaMotor(velocidadeMotor);
       mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
     }
-   lcd.home();
 }
