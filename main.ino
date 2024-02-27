@@ -43,7 +43,7 @@ void mostrarLCD(float temperatura, int velocidadeMotor, float maxTemperatura){
     lcd.print("C");
     lcd.setCursor(0, 1);
     lcd.print("Vel Motor:");
-    lcd.print((int)velocidadeMotor);
+    lcd.print(velocidadeMotor);
     lcd.print("%");
 }
 
@@ -67,7 +67,7 @@ int lerTemperatura(){
 }
 
 void acionaMotor(float velocidadeMotor){
-  motor.write(110);
+  motor.write(velocidadeMotor);
 }
 
 void desligaMotor(){
@@ -99,10 +99,9 @@ void loop(){
       }
       mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
     } else {
-      //ligar motor
-      acionaMotor(1);
-      //controlar rele
-
+      limiteTemperatura(temperatura, maxTemperatura);
+      acionaMotor(velocidadeMotor);
+      mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
     }
    lcd.home();
 }
