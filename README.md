@@ -1,4 +1,4 @@
-# Idiomas [🇧🇷](https://github.com/ThaylorLT/TracionadorPET/blob/main/README.md) [🇺🇸](https://github.com/ThaylorLT/TracionadorPET/blob/main/README.en.md)
+# Idioma [🇧🇷](https://github.com/ThaylorLT/TracionadorPET/blob/main/README.md) [🇺🇸](https://github.com/ThaylorLT/TracionadorPET/blob/main/README.en.md)
 
 # TracionadorPET ♻️
 
@@ -11,11 +11,11 @@
 - **1x Resistor 100k 1/8W**
 - **2x Potenciometros 10k**
 - **1x Resistencia de Cartucho 12v/40W**
-- **1x Arduino Uno**
+- **1x Arduino MEGA**
 - **Servo Motor MG996R**
 
 # Esquema Elétrico ⚡:
-
+![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/testing/assets/schematic.jpg)
 # Arquivos CAD 🔨:
  
 ## Trabalho em andamento ⚠️
