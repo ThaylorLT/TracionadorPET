@@ -16,6 +16,16 @@
 
 # Esquema Elétrico ⚡:
 ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/testing/assets/schematic.jpg)
+
 # Arquivos CAD 🔨:
- 
+***obs:clique no icone de pasta para download***
+ ## Clindro [:file_folder:](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/cilindro%202.stl)
+ > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/cilindroA.png)
+ > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/cilindroB.png)
+ ## Suporte Cilindro [:file_folder:](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/suporte.stl)
+ > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/suporte%20cilindro.png)
+ ## Suporte Motor [:file_folder:](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/suporte.stl)
+ > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/suporte%20motor.png)
+ ## Filetador [:file_folder:](https://cults3d.com/en/3d-model/tool/pet-bottle-cutter-gypsyrobot)
+ > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/filetador.png)
 ## Trabalho em andamento ⚠️
