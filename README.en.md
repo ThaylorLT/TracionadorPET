@@ -1,4 +1,4 @@
-# Idiomas [🇧🇷](https://github.com/ThaylorLT/TracionadorPET/blob/main/README.md) [🇺🇸](https://github.com/ThaylorLT/TracionadorPET/blob/main/README.en.md)
+# Language [🇧🇷](https://github.com/ThaylorLT/TracionadorPET/blob/main/README.md) [🇺🇸](https://github.com/ThaylorLT/TracionadorPET/blob/main/README.en.md)
 
 # TracionadorPET ♻️
 
