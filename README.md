@@ -15,7 +15,7 @@
 - **Servo Motor MG996R**
 
 # Esquema Elétrico ⚡:
-![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/testing/assets/schematic.jpg)
+![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/schematic.jpg)
 
 # Arquivos CAD 🔨:
 ***obs:clique no icone de pasta para download***
