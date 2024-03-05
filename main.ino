@@ -47,22 +47,22 @@ void mostrarLCD(float temperatura, int velocidadeMotor, float maxTemperatura){
     lcd.print("%    ");
 }
 
-void limiteTemperatura(float temperatura, float maxTemperatura){
-    float minTemperatura= maxTemperatura - 2;
+void limiteTemperatura(float temperatura, float maxTemperatura){  
+  float minTemperatura= maxTemperatura - 2; // valor minímo para o relé bater
     if(temperatura > maxTemperatura){
-        digitalWrite(pinRele,!LOW);
+        digitalWrite(pinRele,HIGH);
     } else if (temperatura < minTemperatura){
-        digitalWrite(pinRele,!HIGH);
+        digitalWrite(pinRele,LOW);
     } 
 }
 
 float lerMotor(){
-    float velMotor=map(analogRead(A1),0,1023,90,0);
+    float velMotor=map(analogRead(A1),0,1023,90,0);// leitura da velocidade do motor através do potenciometro.
     return velMotor;
 }
 
 int lerTemperatura(){
-    float maxTemperatura=map(analogRead(A1),0,1023,0,220);
+    float maxTemperatura=map(analogRead(A1),0,1023,0,220);// leitura da temperatura máxima através do potenciometro.
     return maxTemperatura;
 }
 
@@ -90,17 +90,17 @@ void loop(){
     bool estadoLigar=digitalRead(pinLigar);
     float temperatura=calcTemperatura();
     desligaMotor();
-    if(!estadoLigar){
-      digitalWrite(pinRele,HIGH);
-      if(estadoConfig){
+    if(!estadoLigar){// se o botão estiver em estado LOW o relé e o motor devem estar desligados
+      digitalWrite(pinRele,HIGH);// garantir que o relé esteja aberto
+      if(estadoConfig){// pino de controle de configuração
         velocidadeMotor=lerMotor();
       } else {
         maxTemperatura=lerTemperatura();
       }
       mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
-    } else {
+    } else { // se o botão não estiver em estado LOW bater o relé e ligar o motor
       limiteTemperatura(temperatura, maxTemperatura);
-      if(temperatura>=200){
+      if(temperatura>=200){// ligar somente em temperatura acima de 200
         acionaMotor(velocidadeMotor);
       }
       mostrarLCD(temperatura, velocidadeMotor, maxTemperatura);
