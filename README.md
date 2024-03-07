@@ -13,6 +13,9 @@
 - **1x Resistencia de Cartucho 12v/40W**
 - **1x Arduino MEGA**
 - **Servo Motor MG996R**
+- **2x Switches Toggle de 2 Posições**
+- **Modulo Relé Arduino**
+- **Display LCD 16x2 I2C**
 
 # Esquema Elétrico ⚡:
 ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/schematic.jpg)
@@ -32,4 +35,4 @@
 > Para usar, primeiro passe a garrafa escolhida pelo filetador, após corte a ponta do filete de modo que sua ponta passe pelo bico do bloco de aquecimento e chegue até o cilindro, após amarre a ponta no buraco do cilindro.
 > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/exemplo-montagem.jpg)
 ## Trabalho finalizado ⚠️
- :hurtrealbad: **Atualmente não funcionando por falta de torque no motor** :hurtrealbad:
+ :shipit: **Atualmente não funcionando por falta de torque no motor** :shipit:
