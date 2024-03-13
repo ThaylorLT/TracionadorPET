@@ -32,7 +32,7 @@
  ## Filetador [:file_folder:](https://cults3d.com/en/3d-model/tool/pet-bottle-cutter-gypsyrobot)
  > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/filetador.png)
 ## Como Usar❓:
-> Para usar, primeiro passe a garrafa escolhida pelo filetador, após corte a ponta do filete de modo que sua ponta passe pelo bico do bloco de aquecimento e chegue até o cilindro, após amarre a ponta no buraco do cilindro.
+> Para usar, primeiro passe a garrafa escolhida pelo filetador, após corte a ponta do filete de modo que sua ponta passe pelo bico do bloco de aquecimento e chegue até o cilindro, após amarre a ponta no buraco que se encontra na parede direita do cilindro.
 > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/exemplo-montagem.jpg)
 ## Trabalho finalizado ⚠️
  :shipit: **Atualmente não funcionando por falta de torque no motor** :shipit:
