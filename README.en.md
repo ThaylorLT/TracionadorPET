@@ -22,7 +22,7 @@
 ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/schematic.jpg)
 
 # CAD Files 🔨:
-***obs: press the folder icon to download the files ***
+***obs: press the folder icon to download the files***
  ## Cylinder [:file_folder:](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/cilindro%202.stl)
  > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/cilindroA.png)
  > ![alt text](https://github.com/ThaylorLT/TracionadorPET/blob/main/assets/images/cilindroB.png)
